@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  season_id: 1
+  number: 1
+  title: MyString
+  description: MyText
+  rating: 1.5
+
+two:
+  season_id: 1
+  number: 1
+  title: MyString
+  description: MyText
+  rating: 1.5
