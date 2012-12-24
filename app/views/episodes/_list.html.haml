@@ -1,0 +1,19 @@
+%table
+  %tr
+    %th Season
+    %th Number
+    %th Title
+    / %th Description
+    / %th Rating
+    %th Watched
+    %th
+
+  - episodes.each do |episode|
+    %tr
+      %td= episode.season.number
+      %td= episode.number
+      %td= episode.title
+      / %td= episode.description
+      / %td= episode.rating
+      %td= episode.watched ? "Yes" : "No"
+      %td= link_to 'Show', series_episode_path(@series, episode)

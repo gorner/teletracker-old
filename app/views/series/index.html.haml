@@ -1,0 +1,23 @@
+%h1 Listing series
+
+%table
+  %tr
+    %th Title
+    %th Category
+    %th Rating
+    %th
+    %th
+    %th
+
+  - @series.each do |series|
+    %tr
+      %td= series.title
+      %td= series.category.present? ? series.category.name : "None"
+      %td= series.rating
+      %td= link_to 'Show', series
+      %td= link_to 'Edit', edit_series_path(series)
+      %td= link_to 'Destroy', series, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'Search Series', search_series_index_path

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221204500) do
+ActiveRecord::Schema.define(:version => 20121224003153) do
 
   create_table "categories", :force => true do |t|
     t.string   "name",       :null => false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20121221204500) do
     t.float    "rating"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "watched"
   end
 
   create_table "seasons", :force => true do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20121221204500) do
     t.float    "rating"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "sid"
   end
 
 end

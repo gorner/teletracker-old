@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%h1 #{@series.title} – "#{@episode.title}"
+
+%p
+  %b Season:
+  = @episode.season.number
+%p
+  %b Number:
+  = @episode.number
+/ %p
+/   %b Description:
+/   = @episode.description
+/ %p
+/   %b Rating:
+/   = @episode.rating
+%p
+  %b Watched:
+  = @episode.watched ? "Yes" : "No"
+
+
+= link_to 'Edit', edit_series_episode_path(@series, @episode)
+\|
+= link_to 'Back', series_episodes_path(@series)

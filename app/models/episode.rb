@@ -1,3 +1,8 @@
 class Episode < ActiveRecord::Base
-  attr_accessible :description, :number, :rating, :season_id, :title
+  attr_accessible :watched
+  belongs_to :season
+  
+  def series
+    season.present? ? season.series : nil
+  end
 end

@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%h1
+  = @series.title
+
+%p
+  %b Description:
+  = @series.description
+
+%p
+  %b Category:
+  = @series.category.present? ? @series.category.name : "None"
+
+%p
+  %b Rating:
+  = @series.rating
+  
+%h2 Episodes
+= render :partial => "episodes/list", :locals => {:episodes => @series.episodes}
+  
+
+
+/ = link_to 'Edit', edit_series_path(@series)
+/ \|
+= link_to 'Back', series_index_path

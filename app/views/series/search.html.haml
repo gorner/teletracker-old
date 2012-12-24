@@ -1,0 +1,22 @@
+%h1 Series search
+
+= form_tag('/series/search', :method => :get) do
+  = search_field_tag 'q', params[:q]
+  = submit_tag 'Search'
+
+- if @results.present?
+  %table
+    %tr
+      %th Title
+      %th Category
+      %th Add
+
+    - @results.each do |result|
+      %tr
+        %td= result["name"]
+        %td= result["classification"]
+        /%td= link_to '+', new_series_path(:sid => result["showid"])
+        %td
+          = form_tag('/series') do
+            = hidden_field_tag :sid, result["showid"]
+            = submit_tag "+"

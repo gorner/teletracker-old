@@ -5,8 +5,20 @@ class SeriesController < ApplicationController
     @series = Series.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @series }
+    end
+  end
+  
+  # GET /series/search
+  # GET /series/search.json
+  def search
+    @q = params[:q]
+    @results = Series.external_search(@q)
+
+    respond_to do |format|
+      format.html # search.html.haml
+      format.json { render json: @results.to_json }
     end
   end
 
@@ -16,7 +28,7 @@ class SeriesController < ApplicationController
     @series = Series.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @series }
     end
   end
@@ -24,10 +36,11 @@ class SeriesController < ApplicationController
   # GET /series/new
   # GET /series/new.json
   def new
-    @series = Series.new
+    @sid = params[:sid]
+    @series = @sid.present? ? Series.find_or_new_from_sid(@sid) : Series.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.json { render json: @series }
     end
   end
@@ -40,7 +53,9 @@ class SeriesController < ApplicationController
   # POST /series
   # POST /series.json
   def create
-    @series = Series.new(params[:series])
+    params[:series] ||= {}
+    @sid = params[:sid] || params[:series][:sid]
+    @series = @sid.present? ? Series.find_or_new_from_sid(@sid, params[:series]) : Series.new(params[:series])
 
     respond_to do |format|
       if @series.save
